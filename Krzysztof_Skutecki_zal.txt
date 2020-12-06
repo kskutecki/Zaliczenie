@@ -1,0 +1,35 @@
+zad 2. 
+
+select emp.firstName, emp.lastName, emp.employeeNumber, count(*) customers_number from customers c 
+join employees emp on emp.employeeNumber = c.salesRepEmployeeNumber 
+join offices o on emp.officeCode = o.officeCode
+group by emp.employeeNumber;
+
+zad 4:
+
+a) 
+
+select year(o.orderDate) rok, count(*) ile 
+from orderdetails od 
+join orders o on od.orderNumber = o.orderNumber 
+join products pr on pr.productCode = od.productCode 
+where productName = '1969 Harley Davidson Ultimate Chopper'
+group by rok;
+
+
+b)
+
+select year(ord.orderDate) rok, sum(od.quantityOrdered) suma from orderdetails od 
+join orders ord on od.orderNumber = ord.orderNumber 
+join products prod on prod.productCode = od.productCode 
+where productName = '1969 Harley Davidson Ultimate Chopper'
+group by rok;
+
+
+
+c) 
+
+select pl.*, count(*) productionQuantity from productlines pl
+join products prod on prod.productLine = pl.productLine 
+group by prod.productLine 
+having productionQuantity > 10;
